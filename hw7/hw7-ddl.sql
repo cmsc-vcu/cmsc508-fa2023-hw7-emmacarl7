@@ -46,7 +46,7 @@ CREATE TABLE skills (
 # You can assign skill names.  Please be creative!
 
 INSERT INTO skills VALUES (
-  001, 
+  1, 
   'Infiltration', 
   'A master of disguise, espionage, and subterfuge. They can blend into any environment and assume various identities, making them ideal for covert operations.', 
   'Skill 1',
@@ -55,7 +55,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  002, 
+  2, 
   'Sniper', 
   'An expert marksman with unparalleled accuracy, the sniper is deadly from long distances. They can eliminate targets with precision and minimal risk of exposure.', 
   'Skill 2',
@@ -64,7 +64,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  003, 
+  3, 
   'Negotiation', 
   'Skilled in extracting information from targets through persuasion and manipulation. They can be useful in obtaining critical intel without resorting to violence.', 
   'Skill 3',
@@ -73,7 +73,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  004, 
+  4, 
   'Medicine', 
   'The medic can provide essential medical assistance to injured team members, ensuring their survival and recovery.', 
   'Skill 4',
@@ -82,7 +82,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  005, 
+  5, 
   'Getaway Driving', 
   'Skilled driver specializing in rapid escapes, ensuring the safety of the crew during missions and high-pressure situations', 
   'Skill 5',
@@ -91,7 +91,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  006, 
+  6, 
   'Hand-to-hand combat', 
   'Master of close-quarters combat, excelling in unarmed combat techniques for self-defense and offense.', 
   'Skill 6',
@@ -244,83 +244,83 @@ CREATE TABLE peopleskills (
 # Person 1
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  001, 
+  1, 
   101
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  003, 
+  3, 
   101
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  006, 
+  6, 
   101
 );
 
 # Person 2
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  003, 
+  3, 
   102
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  004, 
+  4, 
   102
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  005, 
+  5, 
   102
 );
 
 # Person 3
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  001, 
+  1, 
   103
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  005, 
+  5, 
   103
 );
 
 # Person 5
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  003, 
+  3, 
   105
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  006, 
+  6, 
   105
 );
 
 # Person 6
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  002, 
+  2, 
   106
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  003, 
+  3, 
   106
 );
 
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
-  004, 
+  4, 
   106
 );
 
