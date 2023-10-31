@@ -18,6 +18,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS people;
+DROP TABLE IF EXISTS skills;
 # ... 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -28,11 +29,91 @@ SET FOREIGN_KEY_CHECKS=1;
 # time committment offers some sense of how much time was required (or will be required) to gain the skill.
 # You can assign the skill descriptions.  Please be creative!
 
+CREATE TABLE skills (
+    skill_id INT PRIMARY KEY NOT NULL,
+    skill_name VARCHAR(255) NOT NULL,
+    skill_description VARCHAR(4096) NOT NULL,
+    tag VARCHAR(255) NOT NULL,
+    skill_url VARCHAR(255),
+    time_commitment INT
+);
 
 # Section 3
 # Populate skills
 # Populates the skills table with eight skills, their tag fields must exactly contain “Skill 1”, “Skill 2”, etc.
 # You can assign skill names.  Please be creative!
+
+INSERT INTO skills VALUES(
+  1, 
+  'Infiltration', 
+  'A master of disguise, espionage, and subterfuge. They can blend into any environment and assume various identities, making them ideal for covert operations.', 
+  'Skill 1',
+  'https://en.wikipedia.org/wiki/Infiltrator',
+  100
+);
+
+INSERT INTO skills VALUES(
+  2, 
+  'Sniper', 
+  'An expert marksman with unparalleled accuracy, the sniper is deadly from long distances. They can eliminate targets with precision and minimal risk of exposure.', 
+  'Skill 2',
+  '',
+  200
+);
+
+INSERT INTO skills VALUES(
+  3, 
+  'Negotiation', 
+  'Skilled in extracting information from targets through persuasion and manipulation. They can be useful in obtaining critical intel without resorting to violence.', 
+  'Skill 3',
+  '',
+  50
+);
+
+INSERT INTO skills VALUES(
+  4, 
+  'Medicine', 
+  'The medic can provide essential medical assistance to injured team members, ensuring their survival and recovery.', 
+  'Skill 4',
+  '',
+  100
+);
+
+INSERT INTO skills VALUES(
+  5, 
+  'Getaway Driving', 
+  'Skilled driver specializing in rapid escapes, ensuring the safety of the crew during missions and high-pressure situations', 
+  'Skill 5',
+  '',
+  35
+);
+
+INSERT INTO skills VALUES(
+  6, 
+  'Hand-to-hand combat', 
+  'Master of close-quarters combat, excelling in unarmed combat techniques for self-defense and offense.', 
+  'Skill 6',
+  '',
+  300
+);
+
+INSERT INTO skills VALUES(
+  7, 
+  'Stealth', 
+  'Expert in stealth, lockpicking, and subterfuge, skilled at bypassing security measures and executing covert operations.', 
+  'Skill 7',
+  '',
+  75
+);
+
+INSERT INTO skills VALUES(
+  8, 
+  'Chemistry', 
+  'Proficient in chemistry and chemical analysis, with expertise in creating, analyzing, and manipulating chemical compounds.', 
+  'Skill 8',
+  '',
+  500
+);
 
 
 # Section 4
@@ -52,6 +133,8 @@ CREATE TABLE people (
 # Other fields are for you to assign.
 
 insert into people (people_id,people_last_name) values (1,'Person 1');
+
+select * from people;
 
 
 # Section 6

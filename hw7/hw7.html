@@ -3412,18 +3412,7 @@ z-index: 1000;
 <p>The <em>people</em> table contains elements that describe …</p>
 <p>Below is a list of data in the <em>people</em> table.</p>
 <div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-stdout">
-<pre><code>An error occurred:
-
-(pymysql.err.ProgrammingError) (1146, &quot;Table &#39;23FA_users_carlsoneg2.people&#39; doesn&#39;t exist&quot;)
-[SQL: 
-select * from people;
-]
-(Background on this error at: https://sqlalche.me/e/20/f405)
-
-Ignoring and moving on.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -3431,9 +3420,16 @@ Ignoring and moving on.</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">people_id</th>
+<th data-quarto-table-cell-role="th">people_last_name</th>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Person 1</td>
+</tr>
 </tbody>
 </table>
 
@@ -3445,6 +3441,102 @@ Ignoring and moving on.</code></pre>
 <h3 class="anchored" data-anchor-id="skills-table">Skills table</h3>
 <p>The <em>skills</em> table contains elements that describe …</p>
 <p>Below is a list of data in the <em>skills</em> table.</p>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">skill_id</th>
+<th data-quarto-table-cell-role="th">skill_name</th>
+<th data-quarto-table-cell-role="th">skill_description</th>
+<th data-quarto-table-cell-role="th">tag</th>
+<th data-quarto-table-cell-role="th">skill_url</th>
+<th data-quarto-table-cell-role="th">time_commitment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Infiltration</td>
+<td>A master of disguise, espionage, and subterfug...</td>
+<td>Skill 1</td>
+<td>https://en.wikipedia.org/wiki/Infiltrator</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Sniper</td>
+<td>An expert marksman with unparalleled accuracy,...</td>
+<td>Skill 2</td>
+<td></td>
+<td>200</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Negotiation</td>
+<td>Skilled in extracting information from targets...</td>
+<td>Skill 3</td>
+<td></td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>Medicine</td>
+<td>The medic can provide essential medical assist...</td>
+<td>Skill 4</td>
+<td></td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>Getaway Driving</td>
+<td>Skilled driver specializing in rapid escapes, ...</td>
+<td>Skill 5</td>
+<td></td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>6</td>
+<td>Hand-to-hand combat</td>
+<td>Master of close-quarters combat, excelling in ...</td>
+<td>Skill 6</td>
+<td></td>
+<td>300</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>7</td>
+<td>Stealth</td>
+<td>Expert in stealth, lockpicking, and subterfuge...</td>
+<td>Skill 7</td>
+<td></td>
+<td>75</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>8</td>
+<td>Chemistry</td>
+<td>Proficient in chemistry and chemical analysis,...</td>
+<td>Skill 8</td>
+<td></td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="roles-table" class="level3">
 <h3 class="anchored" data-anchor-id="roles-table">Roles table</h3>
@@ -3460,24 +3552,13 @@ Ignoring and moving on.</code></pre>
 <h1>List skill names, tags, and descriptions ordered by name</h1>
 <p>(here a sample query)</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="ss">f&quot;&quot;&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ss">select * from people</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">&quot;&quot;&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sql <span class="op">=</span> <span class="ss">f&quot;&quot;&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">select * from people</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">&quot;&quot;&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(and here is a sample result from the query)</p>
 <div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-stdout">
-<pre><code>An error occurred:
-
-(pymysql.err.ProgrammingError) (1146, &quot;Table &#39;23FA_users_carlsoneg2.people&#39; doesn&#39;t exist&quot;)
-[SQL: 
-select * from people
-]
-(Background on this error at: https://sqlalche.me/e/20/f405)
-
-Ignoring and moving on.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -3485,9 +3566,16 @@ Ignoring and moving on.</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">people_id</th>
+<th data-quarto-table-cell-role="th">people_last_name</th>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Person 1</td>
+</tr>
 </tbody>
 </table>
 
