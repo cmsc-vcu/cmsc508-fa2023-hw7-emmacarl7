@@ -19,7 +19,9 @@
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS people;
 DROP TABLE IF EXISTS skills;
-# ... 
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS peopleskills;
+DROP TABLE IF EXISTS peopleroles;
 SET FOREIGN_KEY_CHECKS=1;
 
 # Section 2
@@ -44,7 +46,7 @@ CREATE TABLE skills (
 # You can assign skill names.  Please be creative!
 
 INSERT INTO skills VALUES (
-  1, 
+  001, 
   'Infiltration', 
   'A master of disguise, espionage, and subterfuge. They can blend into any environment and assume various identities, making them ideal for covert operations.', 
   'Skill 1',
@@ -52,9 +54,8 @@ INSERT INTO skills VALUES (
   100
 );
 
-
 INSERT INTO skills VALUES (
-  2, 
+  002, 
   'Sniper', 
   'An expert marksman with unparalleled accuracy, the sniper is deadly from long distances. They can eliminate targets with precision and minimal risk of exposure.', 
   'Skill 2',
@@ -63,7 +64,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  3, 
+  003, 
   'Negotiation', 
   'Skilled in extracting information from targets through persuasion and manipulation. They can be useful in obtaining critical intel without resorting to violence.', 
   'Skill 3',
@@ -72,7 +73,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  4, 
+  004, 
   'Medicine', 
   'The medic can provide essential medical assistance to injured team members, ensuring their survival and recovery.', 
   'Skill 4',
@@ -81,7 +82,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  5, 
+  005, 
   'Getaway Driving', 
   'Skilled driver specializing in rapid escapes, ensuring the safety of the crew during missions and high-pressure situations', 
   'Skill 5',
@@ -90,7 +91,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  6, 
+  006, 
   'Hand-to-hand combat', 
   'Master of close-quarters combat, excelling in unarmed combat techniques for self-defense and offense.', 
   'Skill 6',
@@ -99,7 +100,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  7, 
+  007, 
   'Stealth', 
   'Expert in stealth, lockpicking, and subterfuge, skilled at bypassing security measures and executing covert operations.', 
   'Skill 7',
@@ -108,7 +109,7 @@ INSERT INTO skills VALUES (
 );
 
 INSERT INTO skills VALUES (
-  8, 
+  008, 
   'Chemistry', 
   'Proficient in chemistry and chemical analysis, with expertise in creating, analyzing, and manipulating chemical compounds.', 
   'Skill 8',
@@ -140,7 +141,7 @@ CREATE TABLE people (
 # Other fields are for you to assign.
 
 INSERT INTO people VALUES (
-  1,
+  101,
   'Beatrix',
   'Person 1',
   'beatrix@gmail.com',
@@ -152,7 +153,7 @@ INSERT INTO people VALUES (
   );
 
 INSERT INTO people VALUES (
-  2,
+  102,
   'Bill',
   'Person 2',
   'bill@gmail.com',
@@ -164,7 +165,7 @@ INSERT INTO people VALUES (
   );
 
 INSERT INTO people VALUES (
-  3,
+  103,
   'O-Ren',
   'Person 3',
   'o-ren@gmail.com',
@@ -176,7 +177,7 @@ INSERT INTO people VALUES (
   );
 
 INSERT INTO people VALUES (
-  4,
+  104,
   'Vernita',
   'Person 4',
   'vernita@gmail.com',
@@ -188,7 +189,7 @@ INSERT INTO people VALUES (
   );
 
 INSERT INTO people VALUES (
-  5,
+  105,
   'Budd',
   'Person 5',
   'budd@gmail.com',
@@ -200,7 +201,7 @@ INSERT INTO people VALUES (
   );
 
 INSERT INTO people VALUES (
-  6,
+  106,
   'Elle',
   'Person 6',
   'elle@gmail.com',
@@ -215,6 +216,15 @@ INSERT INTO people VALUES (
 # Section 6
 # Create peopleskills( id, skills_id, people_id, date_acquired )
 # None of the fields can ba NULL. ID can be auto_increment.
+
+CREATE TABLE peopleskills (
+  id int AUTO_INCREMENT PRIMARY KEY,
+  skills_id int NOT NULL,
+  people_id int NOT NULL,
+  date_acquired date NOT NULL DEFAULT '2000-01-01',
+  FOREIGN KEY (skills_id) REFERENCES skills(id),
+  FOREIGN KEY (people_id) REFERENCES people(id)
+);
 
 
 # Section 7
@@ -231,24 +241,160 @@ INSERT INTO people VALUES (
 # Person 10 has skills 1,4,5;
 # Note that no one has yet acquired skills 7 and 8.
  
+# Person 1
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  001, 
+  101
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  003, 
+  101
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  006, 
+  101
+);
+
+# Person 2
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  003, 
+  102
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  004, 
+  102
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  005, 
+  102
+);
+
+# Person 3
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  001, 
+  103
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  005, 
+  103
+);
+
+# Person 5
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  003, 
+  105
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  006, 
+  105
+);
+
+# Person 6
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  002, 
+  106
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  003, 
+  106
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  004, 
+  106
+);
+
 
 # Section 8
 # Create roles( id, name, sort_priority )
 # sort_priority is an integer and is used to provide an order for sorting roles
 
-
+CREATE TABLE roles (
+  id int PRIMARY KEY NOT NULL,
+  name varchar(255) NOT NULL,
+  sort_priority int
+);
 
 # Section 9
 # Populate roles
 # Designer, Developer, Recruit, Team Lead, Boss, Mentor
 # Sort priority is assigned numerically in the order listed above (Designer=10, Developer=20, Recruit=30, etc.)
 
+INSERT INTO roles (id, name, sort_priority) 
+VALUES(
+  201,
+  'Designer',
+  10
+);
+
+INSERT INTO roles (id, name, sort_priority) 
+VALUES(  
+  202,
+  'Developer',
+  20
+);
+
+INSERT INTO roles (id, name, sort_priority) 
+VALUES(  
+  203,
+  'Recruit',
+  30
+);
+
+INSERT INTO roles (id, name, sort_priority) 
+VALUES(  
+  204,
+  'Team Lead',
+  40
+);
+
+INSERT INTO roles (id, name, sort_priority) 
+VALUES(  
+  205,
+  'Boss',
+  50
+);
+
+INSERT INTO roles (id, name, sort_priority) 
+VALUES(  
+  206,
+  'Mentor',
+  60
+);
 
 
 # Section 10
 # Create peopleroles( id, people_id, role_id, date_assigned )
 # None of the fields can be null.  ID can be auto_increment
 
+CREATE TABLE peopleroles(
+  id int AUTO_INCREMENT PRIMARY KEY,
+  people_id int NOT NULL,
+  role_id int NOT NULL,
+  date_assigned date NOT NULL DEFAULT '2000-01-01',
+  FOREIGN KEY (people_id) REFERENCES people(id),
+  FOREIGN KEY (role_id) REFERENCES roles(id)
+);
 
 
 # Section 11
@@ -263,4 +409,64 @@ INSERT INTO people VALUES (
 # Person 8 is Designer and Team Lead
 # Person 9 is Developer
 # Person 10 is Developer and Designer
+
+# Person 1
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  101,
+  201
+);
+
+# Person 2
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  102,
+  205
+);
+
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  102,
+  206
+);
+
+# Person 3
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  103,
+  202
+);
+
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  103,
+  204
+);
+
+# Person 4
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  104,
+  203
+);
+
+# Person 5
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  105,
+  203
+);
+
+# Person 6
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  106,
+  202
+);
+
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  106,
+  201
+);
 
