@@ -30,12 +30,12 @@ SET FOREIGN_KEY_CHECKS=1;
 # You can assign the skill descriptions.  Please be creative!
 
 CREATE TABLE skills (
-    skill_id INT PRIMARY KEY NOT NULL,
-    skill_name VARCHAR(255) NOT NULL,
-    skill_description VARCHAR(4096) NOT NULL,
-    tag VARCHAR(255) NOT NULL,
-    skill_url VARCHAR(255),
-    time_commitment INT
+    id int PRIMARY KEY NOT NULL,
+    name varchar(255) NOT NULL,
+    description varchar(4096) NOT NULL,
+    tag varchar(255) NOT NULL,
+    url varchar(255),
+    time_commitment int
 );
 
 # Section 3
@@ -43,7 +43,7 @@ CREATE TABLE skills (
 # Populates the skills table with eight skills, their tag fields must exactly contain “Skill 1”, “Skill 2”, etc.
 # You can assign skill names.  Please be creative!
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   1, 
   'Infiltration', 
   'A master of disguise, espionage, and subterfuge. They can blend into any environment and assume various identities, making them ideal for covert operations.', 
@@ -52,66 +52,67 @@ INSERT INTO skills VALUES(
   100
 );
 
-INSERT INTO skills VALUES(
+
+INSERT INTO skills VALUES (
   2, 
   'Sniper', 
   'An expert marksman with unparalleled accuracy, the sniper is deadly from long distances. They can eliminate targets with precision and minimal risk of exposure.', 
   'Skill 2',
-  '',
+  'https://',
   200
 );
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   3, 
   'Negotiation', 
   'Skilled in extracting information from targets through persuasion and manipulation. They can be useful in obtaining critical intel without resorting to violence.', 
   'Skill 3',
-  '',
+  'https://',
   50
 );
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   4, 
   'Medicine', 
   'The medic can provide essential medical assistance to injured team members, ensuring their survival and recovery.', 
   'Skill 4',
-  '',
+  'https://',
   100
 );
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   5, 
   'Getaway Driving', 
   'Skilled driver specializing in rapid escapes, ensuring the safety of the crew during missions and high-pressure situations', 
   'Skill 5',
-  '',
+  'https://',
   35
 );
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   6, 
   'Hand-to-hand combat', 
   'Master of close-quarters combat, excelling in unarmed combat techniques for self-defense and offense.', 
   'Skill 6',
-  '',
+  'https://en.wikipedia.org/wiki/Hand-to-hand_combat',
   300
 );
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   7, 
   'Stealth', 
   'Expert in stealth, lockpicking, and subterfuge, skilled at bypassing security measures and executing covert operations.', 
   'Skill 7',
-  '',
-  75
+  'https://',
+  25
 );
 
-INSERT INTO skills VALUES(
+INSERT INTO skills VALUES (
   8, 
   'Chemistry', 
   'Proficient in chemistry and chemical analysis, with expertise in creating, analyzing, and manipulating chemical compounds.', 
   'Skill 8',
-  '',
+  'https://',
   500
 );
 
@@ -122,9 +123,15 @@ INSERT INTO skills VALUES(
 # All other fields can default to NULL.
 
 CREATE TABLE people (
-    people_id int,
-    people_last_name varchar(256) NOT NULL,
-    PRIMARY KEY (people_id)
+    id int PRIMARY KEY NOT NULL,
+    first_name varchar(255) DEFAULT NULL,
+    last_name varchar(255) NOT NULL,
+    email varchar(255) DEFAULT NULL,
+    linkedin_url varchar(255) DEFAULT NULL,
+    headshot_url varchar(255) DEFAULT NULL,
+    discord_handle varchar(255) DEFAULT NULL,
+    brief_bio varchar(4096) DEFAULT NULL,
+    date_joined date NOT NULL DEFAULT '2000-01-01'
 );
 
 # Section 5
@@ -132,9 +139,77 @@ CREATE TABLE people (
 # Their last names must exactly be “Person 1”, “Person 2”, etc.
 # Other fields are for you to assign.
 
-insert into people (people_id,people_last_name) values (1,'Person 1');
+INSERT INTO people VALUES (
+  1,
+  'Beatrix',
+  'Person 1',
+  'beatrix@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@beatrix',
+  'Beatrix is so cool',
+  '2000-01-01'
+  );
 
-select * from people;
+INSERT INTO people VALUES (
+  2,
+  'Bill',
+  'Person 2',
+  'bill@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@bill',
+  'Bill is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  3,
+  'O-Ren',
+  'Person 3',
+  'o-ren@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@o-ren',
+  'O-ren is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  4,
+  'Vernita',
+  'Person 4',
+  'vernita@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@vernita',
+  'Vernita is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  5,
+  'Budd',
+  'Person 5',
+  'budd@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@budd',
+  'Budd is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  6,
+  'Elle',
+  'Person 6',
+  'elle@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@elle',
+  'Elle is so cool',
+  '2000-01-01'
+  );
 
 
 # Section 6
