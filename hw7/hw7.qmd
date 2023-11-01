@@ -10,9 +10,7 @@ format:
         code-copy: true
 ---
 
-(include a brief description of what is in this document)
-
-(Please clean up any comments that I included.  This is a scaffold document.)
+This document is the deliverable for homework 7 in CMSC 508. In this document, a database, tables, and tuples are all created, and SQL queries to filter the data are executed.
 
 GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-emmacarl7>
 
@@ -92,34 +90,74 @@ except Exception as e:
 
 ## Overview and description
 
-(briefly describe the project and the database)
+This project contains the creation of a database for a company of designers and developers by day, and assassins by night. The database provides a sort of resume for all of its employees, listing those employees along with their necessary assassin skills and company roles.
+
+In addition to the creation of this database, several SQL queries are executed to show which employees have which skills and which roles, and which skills and roles NO employees have, so that the company can address areas they are lacking. 
+
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+This crows-foot diagram displays the relationship between entities in the database. The primary relationships include the PEOPLE and the SKILLS and ROLES they have. Also included are supplementary entities PEOPLESKILLS and PEOPLEROLES, which group people with skills and roles respectively, to provide useful ways to group the entities.
 
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
+    PEOPLE ||--o{ SKILLS : have
+    PEOPLE ||--o{ ROLES : have
+
+    PEOPLEROLES |{--o{ PEOPLE : organizes
+    PEOPLEROLES |{--o{ ROLES : organizes
+
+    PEOPLESKILLS |{--o{ PEOPLE : organizes
+    PEOPLESKILLS |{--o{ SKILLS : organizes
+    
+    PEOPLE{
         int id
         string first_name
         string last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
+
+    SKILLS{
         int id
+        string name
+        string description
+        string tag
+        string url
+        int time_commitment
+    }
+
+    ROLES{
+      int id
+      string name
+      int sort_priority
+    }
+
+    PEOPLESKILLS{
+      int id
+      int skills_id
+      int people_id
+      date date_acquired
+    }
+
+    PEOPLEROLES{
+      int id
+      int people_id
+      int role_id
+      date date_assigned
     }
 ```
 
 ## Examples of data in the database
 
-For the people, skills, and roles tables, provide a description of each table and it's contents. Then provide a listing of the entire table.
-
 ### People table
 
-The *people* table contains elements that describe ... 
+The *people* table contains information for the people that work at this awesome company. Attributes to describe each person include their first and last names, the date they started, a brief bio, and all the ways to contact them: email addresses, linkedin and headshot urls, and discord handles. 
 
 Below is a list of data in the *people* table.
 
@@ -142,7 +180,7 @@ df
 
 ### Skills table
 
-The *skills* table contains elements that describe ... 
+The *skills* table contains elements that describe the unique skills needed by *people* to make this company flourish. Each skill has an ID, a name (of course), and a brief description as to what this skill entails. Also included is a url to more information about each skill.
 
 Below is a list of data in the *skills* table.
 
@@ -165,7 +203,7 @@ df
 
 ### Roles table
 
-The *roles* table contains elements that describe ... 
+The *roles* table contains elements that describe the roles *people* can take on at this company. Each role has an ID and a name, as well as a priority number associated with it. 
 
 Below is a list of data in the *roles* table.
 
@@ -220,7 +258,9 @@ df
 
 ```{python}
 sql = f"""
-SELECT first_name, last_name, email FROM people ORDER BY last_name
+SELECT first_name, last_name, email 
+FROM people
+ORDER BY last_name
 """
 ```
 
@@ -241,9 +281,10 @@ df
 ### List skill names of Person 1
 ```{python}
 sql = f"""
-SELECT name AS skill_name, people_id
+SELECT name AS skill_name, people.last_name
 FROM peopleskills 
 JOIN skills ON peopleskills.skills_id = skills.id
+JOIN people ON peopleskills.people_id = people.id
 WHERE peopleskills.people_id = 101;
 """
 ```
