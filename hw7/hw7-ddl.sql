@@ -54,39 +54,35 @@ INSERT INTO skills VALUES (
   100
 );
 
-INSERT INTO skills VALUES (
+INSERT INTO skills ( id, name, description, tag, time_commitment ) VALUES (
   2, 
-  'Sniper', 
-  'An expert marksman with unparalleled accuracy, the sniper is deadly from long distances. They can eliminate targets with precision and minimal risk of exposure.', 
+  'Creativity', 
+  'A virtuoso of creativity, seamlessly integrating innovation into every scenario. Their imaginative prowess transforms challenges into opportunities, making them an indispensable architect of novel solutions.', 
   'Skill 2',
-  'https://',
   200
 );
 
-INSERT INTO skills VALUES (
+INSERT INTO skills ( id, name, description, tag, time_commitment ) VALUES (
   3, 
   'Negotiation', 
   'Skilled in extracting information from targets through persuasion and manipulation. They can be useful in obtaining critical intel without resorting to violence.', 
   'Skill 3',
-  'https://',
   50
 );
 
-INSERT INTO skills VALUES (
+INSERT INTO skills ( id, name, description, tag, time_commitment ) VALUES (
   4, 
   'Medicine', 
   'The medic can provide essential medical assistance to injured team members, ensuring their survival and recovery.', 
   'Skill 4',
-  'https://',
   100
 );
 
-INSERT INTO skills VALUES (
+INSERT INTO skills ( id, name, description, tag, time_commitment ) VALUES (
   5, 
   'Getaway Driving', 
   'Skilled driver specializing in rapid escapes, ensuring the safety of the crew during missions and high-pressure situations', 
   'Skill 5',
-  'https://',
   35
 );
 
@@ -99,21 +95,19 @@ INSERT INTO skills VALUES (
   300
 );
 
-INSERT INTO skills VALUES (
+INSERT INTO skills ( id, name, description, tag, time_commitment ) VALUES (
   007, 
   'Stealth', 
   'Expert in stealth, lockpicking, and subterfuge, skilled at bypassing security measures and executing covert operations.', 
   'Skill 7',
-  'https://',
   25
 );
 
-INSERT INTO skills VALUES (
+INSERT INTO skills ( id, name, description, tag, time_commitment ) VALUES (
   008, 
   'Chemistry', 
   'Proficient in chemistry and chemical analysis, with expertise in creating, analyzing, and manipulating chemical compounds.', 
   'Skill 8',
-  'https://',
   500
 );
 
@@ -212,13 +206,61 @@ INSERT INTO people VALUES (
   '2000-01-01'
   );
 
+INSERT INTO people VALUES (
+  107,
+  'Jo',
+  'Person 7',
+  'jo@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@jo',
+  'Jo is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  108,
+  'Q',
+  'Person 8',
+  'q@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@q',
+  'Q is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  109,
+  'U',
+  'Person 9',
+  'u@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@u',
+  'U is so cool',
+  '2000-01-01'
+  );
+
+INSERT INTO people VALUES (
+  110,
+  'M',
+  'Person 10',
+  'm@gmail.com',
+  'https://mylinkedin.com',
+  'https://myheadshot.com',
+  '@m',
+  'M is so cool',
+  '2000-01-01'
+  );
+
 
 # Section 6
 # Create peopleskills( id, skills_id, people_id, date_acquired )
 # None of the fields can ba NULL. ID can be auto_increment.
 
 CREATE TABLE peopleskills (
-  id int AUTO_INCREMENT PRIMARY KEY,
+  id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
   skills_id int NOT NULL,
   people_id int NOT NULL,
   date_acquired date NOT NULL DEFAULT '2000-01-01',
@@ -324,6 +366,87 @@ VALUES (
   106
 );
 
+# Person 7 - 3,5,6
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  3, 
+  107
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  5, 
+  107
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  6, 
+  107
+);
+
+# Person 8 - 1,3,5,6
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  1, 
+  108
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  3, 
+  108
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  5, 
+  108
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  6, 
+  108
+);
+
+# Person 9 has skills 2,5,6;
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  2, 
+  109
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  5, 
+  109
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  6, 
+  109
+);
+
+# Person 10 has skills 1,4,5;
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  1, 
+  110
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  4, 
+  110
+);
+
+INSERT INTO peopleskills(skills_id, people_id) 
+VALUES (
+  5, 
+  110
+);
 
 # Section 8
 # Create roles( id, name, sort_priority )
@@ -388,7 +511,7 @@ VALUES(
 # None of the fields can be null.  ID can be auto_increment
 
 CREATE TABLE peopleroles(
-  id int AUTO_INCREMENT PRIMARY KEY,
+  id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
   people_id int NOT NULL,
   role_id int NOT NULL,
   date_assigned date NOT NULL DEFAULT '2000-01-01',
@@ -470,3 +593,36 @@ VALUES (
   201
 );
 
+# Person 7 is a Designer
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  107,
+  201
+);
+
+# Person 8 is Designer and Team Lead
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  108,
+  201
+);
+
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  108,
+  204
+);
+
+# Person 9 is Developer
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  109,
+  202
+);
+
+# Person 10 is Developer and Designer
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  110,
+  201
+);

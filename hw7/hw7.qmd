@@ -1,16 +1,16 @@
 ---
 title: Homework 7 - Creating a resume database
 author: Emma Carlson
-date: 10.31.2023
+date: 11.09.2023
 format:
     html:
-        theme: cosmo
+        theme: flatly
         toc: true
         embed-resources: true
         code-copy: true
 ---
 
-This document is the deliverable for homework 7 in CMSC 508. In this document, a database, tables, and tuples are all created, and SQL queries to filter the data are executed.
+This document is the deliverable for homework 7 in CMSC 508. A database, tables, and tuples are all created, and SQL queries on the data are executed.
 
 GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-emmacarl7>
 
@@ -90,14 +90,14 @@ except Exception as e:
 
 ## Overview and description
 
-This project contains the creation of a database for a company of designers and developers by day, and assassins by night. The database provides a sort of resume for all of its employees, listing those employees along with their necessary assassin skills and company roles.
+This project reflects **a database for KB Co.** -- a group of cushy real-estate designers and developers by day, and furtive thieves by night. This database provides a resume for all employees of KB Co., combining both their professional and *professional* skillsets. 
 
-In addition to the creation of this database, several SQL queries are executed to show which employees have which skills and which roles, and which skills and roles NO employees have, so that the company can address areas they are lacking. 
+The database provides lists, filtered queries, and sorts of employees (referred to in the db as **people**), their thievery **skills**, and their company **roles**.
 
 
 ## Crows-foot diagram
 
-This crows-foot diagram displays the relationship between entities in the database. The primary relationships include the PEOPLE and the SKILLS and ROLES they have. Also included are supplementary entities PEOPLESKILLS and PEOPLEROLES, which group people with skills and roles respectively, to provide useful ways to group the entities.
+This crows-foot diagram displays the relationship between entities in the database. The primary relationships include the **people** and the **skills** and **roles** they have. Also included are supplementary entities **peopleskills** and **peopleroles**, which group people with skills and roles respectively, to provide useful ways to analyze the data.
 
 ```{mermaid}
 %%| echo: false
@@ -105,11 +105,11 @@ erDiagram
     PEOPLE ||--o{ SKILLS : have
     PEOPLE ||--o{ ROLES : have
 
-    PEOPLEROLES |{--o{ PEOPLE : organizes
-    PEOPLEROLES |{--o{ ROLES : organizes
+    PEOPLE o{--o{ PEOPLEROLES : in
+    ROLES o{--o{ PEOPLEROLES : in
 
-    PEOPLESKILLS |{--o{ PEOPLE : organizes
-    PEOPLESKILLS |{--o{ SKILLS : organizes
+    PEOPLE o{--o{ PEOPLESKILLS : in
+    SKILLS o{--o{ PEOPLESKILLS : in
     
     PEOPLE{
         int id
@@ -157,9 +157,9 @@ erDiagram
 
 ### People table
 
-The *people* table contains information for the people that work at this awesome company. Attributes to describe each person include their first and last names, the date they started, a brief bio, and all the ways to contact them: email addresses, linkedin and headshot urls, and discord handles. 
+The **people** table contains information for the employees that work at KB Co.. Attributes include first name, last name, date started, a brief bio, and contact info: email addresses, linkedin and headshot urls, and discord handles. 
 
-Below is a list of data in the *people* table.
+Below is a list of data in the **people** table.
 
 ```{python}
 #| echo: false
@@ -180,9 +180,9 @@ df
 
 ### Skills table
 
-The *skills* table contains elements that describe the unique skills needed by *people* to make this company flourish. Each skill has an ID, a name (of course), and a brief description as to what this skill entails. Also included is a url to more information about each skill.
+The **skills** table describes the unique skills this company seeks. Each skill has a name and a brief description about that skill. Also included is a url for more info.
 
-Below is a list of data in the *skills* table.
+Below is a list of data in the **skills** table.
 
 ```{python}
 #| echo: false
@@ -203,9 +203,9 @@ df
 
 ### Roles table
 
-The *roles* table contains elements that describe the roles *people* can take on at this company. Each role has an ID and a name, as well as a priority number associated with it. 
+The **roles** table contains elements that describe the roles employees can take on at this company. Each role has a name and a priority code associated with it. 
 
-Below is a list of data in the *roles* table.
+Below is a list of data in the **roles** table.
 
 ```{python}
 #| echo: false
@@ -281,11 +281,11 @@ df
 ### List skill names of Person 1
 ```{python}
 sql = f"""
-SELECT name AS skill_name, people.last_name
+SELECT name AS skill_name, people.first_name, people.last_name
 FROM peopleskills 
 JOIN skills ON peopleskills.skills_id = skills.id
 JOIN people ON peopleskills.people_id = people.id
-WHERE peopleskills.people_id = 101;
+WHERE people.last_name = 'Person 1';
 """
 ```
 

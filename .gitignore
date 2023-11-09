@@ -1,4 +1,4 @@
 # .gitignore
-
 .vscode
 .env
+hw7_database.session.sql
