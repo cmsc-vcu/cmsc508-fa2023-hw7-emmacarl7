@@ -461,6 +461,5 @@ df
 
 
 ## Reflection
-
-(Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment.  Pause and breath before writing - I'm trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)
+Did not mind this assignment. Setup went smoothly, and I worked out my own issues with executing SQL commands. I started early enough to pace myself, and allow myself breaks from this. This provides an excellent template for the group database we will end up making. 
 
