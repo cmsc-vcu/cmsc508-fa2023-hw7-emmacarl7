@@ -283,7 +283,7 @@ CREATE TABLE peopleskills (
 # Person 10 has skills 1,4,5;
 # Note that no one has yet acquired skills 7 and 8.
  
-# Person 1
+# Person 1 has skills 1,3,6;
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
   1, 
@@ -302,7 +302,7 @@ VALUES (
   101
 );
 
-# Person 2
+# Person 2 has skills 3,4,5;
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
   3, 
@@ -321,7 +321,7 @@ VALUES (
   102
 );
 
-# Person 3
+# Person 3 has skills 1,5;
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
   1, 
@@ -334,7 +334,9 @@ VALUES (
   103
 );
 
-# Person 5
+# Person 4 has no skills 
+
+# Person 5 has skills 3,6;
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
   3, 
@@ -347,7 +349,7 @@ VALUES (
   105
 );
 
-# Person 6
+# Person 6 has skills 2,3,4;
 INSERT INTO peopleskills(skills_id, people_id) 
 VALUES (
   2, 
@@ -533,14 +535,14 @@ CREATE TABLE peopleroles(
 # Person 9 is Developer
 # Person 10 is Developer and Designer
 
-# Person 1
+# Person 1 is Developer 
 INSERT INTO peopleroles (people_id, role_id) 
 VALUES (
   101,
   201
 );
 
-# Person 2
+# Person 2 is Boss, Mentor
 INSERT INTO peopleroles (people_id, role_id) 
 VALUES (
   102,
@@ -553,7 +555,7 @@ VALUES (
   206
 );
 
-# Person 3
+# Person 3 is Developer and Team Lead
 INSERT INTO peopleroles (people_id, role_id) 
 VALUES (
   103,
@@ -566,21 +568,21 @@ VALUES (
   204
 );
 
-# Person 4
+# Person 4 is Recruit
 INSERT INTO peopleroles (people_id, role_id) 
 VALUES (
   104,
   203
 );
 
-# Person 5
+# Person 5 is Recruit
 INSERT INTO peopleroles (people_id, role_id) 
 VALUES (
   105,
   203
 );
 
-# Person 6
+# Person 6 is Developer and Designer
 INSERT INTO peopleroles (people_id, role_id) 
 VALUES (
   106,
@@ -625,4 +627,11 @@ INSERT INTO peopleroles (people_id, role_id)
 VALUES (
   110,
   201
+);
+
+# Person 10 is Developer and Designer
+INSERT INTO peopleroles (people_id, role_id) 
+VALUES (
+  110,
+  202
 );
